@@ -1,0 +1,24 @@
+# Description:  beep is a command line tool for linux that beeps the PC speaker
+# URL:          https://github.com/johnath/beep
+# Maintainer:   pekka20 at github dot com
+# Depends on:   glibc
+
+
+name=beep
+version=1.3
+commit=0d790fa45777896749a885c3b93b2c1476d59f20
+release=2013.02.07
+source=(https://github.com/johnath/beep/archive/$commit.zip)	
+
+
+build() {
+	cd $SRC/$name-$commit
+
+	make
+
+	# Install directories:
+	install -d $PKG/usr/{bin,man/man1}
+
+	install -m 755 beep $PKG/usr/bin/beep
+	install -m 644 beep.1.gz $PKG/usr/man/man1/beep.1.gz
+}

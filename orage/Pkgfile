@@ -1,0 +1,26 @@
+# Description:  A simple calendar application with reminders.
+# URL:          https://git.xfce.org/apps/orage/about
+# Maintainer:   pekka20 at github dot com
+# Depends on:   gtk popt
+# Optional:     dbus libical libnotify xfce4-panel
+
+
+name=orage
+version=4.12.1
+release=1
+source=(https://archive.xfce.org/src/apps/orage/4.12/$name-$version.tar.bz2)
+
+
+build () {
+	cd $SRC/$name-$version
+
+	./configure --prefix=/usr \
+	            --disable-nls \
+	            --disable-libical \
+	            --disable-dbus
+
+	make
+	make DESTDIR=$PKG install
+
+	rm -r $PKG/usr/share/locale
+}

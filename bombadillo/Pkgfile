@@ -1,0 +1,18 @@
+# Description:  Terminal browser for Gopher, Gemini, Finger and local files.
+# URL:          http://bombadillo.colorfield.space
+# Maintainer:   pekka20 at github dot com
+# Depends on:   go ncurses 
+# Nice to have: desktop-file-utils
+
+
+name=bombadillo
+version=2.3.1
+release=1
+source=(https://tildegit.org/sloum/$name/archive/$version.tar.gz)
+
+
+build() {
+	cd $SRC/$name
+
+	make DESTDIR=$PKG install PREFIX=/usr
+}

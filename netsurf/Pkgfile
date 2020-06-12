@@ -1,0 +1,30 @@
+# Description:  Lightweight and fast web browser
+# URL:          http://www.netsurf-browser.org
+# Maintainer:   pekka20 at github dot com
+# Depends on:   curl gtk lipjpeg libpng openssl zlib
+# Optional:     gtk3
+
+
+name=netsurf-all
+version=3.10
+release=1
+source=(http://download.netsurf-browser.org/netsurf/releases/source-full/$name-$version.tar.gz
+        netsurf.desktop)
+
+
+build() {
+	cd $SRC/$name-$version
+
+	# Make install directories:
+	mkdir -p $PKG/usr/{bin,share}
+
+	make PREFIX=/usr
+	make DESTDIR=$PKG PREFIX=/usr install
+
+	# [Desktop Entry]:
+	mkdir -p $PKG/usr/share/applications
+	cp $SRC/netsurf.desktop $PKG/usr/share/applications
+
+	#  Remove internatinalization files:
+	rm -R $PKG/usr/share/netsurf/{de,fr,it,ja,nl}
+}

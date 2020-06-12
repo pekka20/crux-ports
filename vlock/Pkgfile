@@ -1,0 +1,28 @@
+# Description:  Utility for locking virtual consoles.
+# URL:          https://github.com/TragicWarrior/vlock
+# Maintainer:   pekka20 at github dot com
+# Depends on:   bash glibc ncurses
+# Optional:     linux-pam
+
+
+name=vlock
+version=2.2.4
+release=1
+source=(https://github.com/TragicWarrior/$name/archive/$version.tar.gz)
+
+
+build() {
+	cd $SRC/$name-$version
+
+	mkdir $PKG/usr
+
+	./configure --prefix=/usr \
+	            --enable-shadow \
+	            --enable-plugins \
+	            VLOCK_GROUP=wheel \
+	            BOURNE_SHELL=/bin/bash \
+	            --with-modules="all.so cmatrix.so new.so nosysrq.so train.so ttyblank.so"
+
+	make
+	make DESTDIR=$PKG install
+}

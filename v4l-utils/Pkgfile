@@ -1,0 +1,25 @@
+# Description:  Userspace tools and conversion library for Video 4 Linux
+# URL:          https://linuxtv.org
+# Maintainer:   pekka20 at github dot com
+# Depends on:   alsa-libs eudev libjpeg-turbo sysfsutils
+# Optional:     freeglut glu hicolor-icon-theme qt5 sdl2_image xorg-libx11
+# Nice to have: graphviz doxygen
+
+
+name=v4l-utils
+version=1.20.0
+release=1
+source=(https://linuxtv.org/downloads/v4l-utils/$name-$version.tar.bz2)
+
+
+build() {
+	cd $SRC/$name-$version
+
+	./configure  --prefix=/usr \
+	            --disable-nls
+
+	make -j1
+	make -j1 DESTDIR=$PKG install
+
+#	rm $PKG/usr/bin/ivtv-ctl
+}

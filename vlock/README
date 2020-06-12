@@ -1,0 +1,23 @@
+## vlock 2.2.4 readme
+This is TragicWarrior fork of vlock (https://github.com/TragicWarrior/vlock).
+
+
+## About vlock screensaver plugins:
+Three screensaver plugins are available, ttyblank, train and cmatrix.
+The old caca screensaver plugin is removed.
+The vlock-plugins manual is not updated reflecting these changes.
+
+* ttyblank is used by default.
+* ttyblank will set all monitors to 'standby' powersaving mode.
+* train and cmatrix must be specified.
+
+
+## Wheel group:
+The wheel group is used for restricted modules.
+Two options are reseved for the wheel group:
+
+	-n,--new
+	   Switch to a new virtual console before locking all console sessions.
+
+	-s,--disable-sysrq
+	    Disable the SysRq mechanism while consoles  are  locked.

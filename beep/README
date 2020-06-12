@@ -1,0 +1,5 @@
+beep readme
+
+The binary '/usr/bin/beep' may need suid to be executed by unprivileged users:
+
+sudo chmod u+s /usr/bin/beep

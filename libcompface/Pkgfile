@@ -1,0 +1,18 @@
+# Description:  Utilities and a library to convert from/to X-Face format
+# URL:          http://www.syseng.anu.edu.au/~jaa/
+# Maintainer:   Vincenzo Colosimo, vico at bicisport dot de
+# Packager:     pekka20 at github dot com
+
+
+name=libcompface
+version=1.5.2
+release=1
+source=(http://ftp.xemacs.org/pub/xemacs/aux/compface-$version.tar.gz)
+
+
+build() {
+    cd $SRC/compface-$version
+    ./configure --prefix=/usr
+    make
+    make prefix=$PKG/usr install
+}

@@ -1,0 +1,22 @@
+# Description:  A ncurses-based Tox client
+# URL:          https://github.com/JFreegman/toxic
+# Maintainer:   pekka20 at github dot com
+# Depends on:   curl freealut libconfig libpng ncurses openal toxcore-toktok
+# Optional:     asciidoctor libnotify python3 qrencode
+
+
+name=toxic
+version=0.8.3
+commit=f012007cc4818e8b5551a6a0166df471f7abf867
+release=2020.05.18
+source=(https://github.com/JFreegman/toxic/archive/$commit.zip)
+
+
+build() {
+	cd $SRC/$name-$commit
+
+	# Disable X11 if needed: https://github.com/JFreegman/toxic/issues/277
+#	make PREFIX=/usr DISABLE_X11=1
+	make PREFIX=/usr
+	make PREFIX=/usr DESTDIR=$PKG install
+}

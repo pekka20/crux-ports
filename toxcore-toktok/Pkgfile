@@ -1,0 +1,26 @@
+
+# Description:  Tox is a distributed, secure messenger with audio and video chat capabilities.
+# URL:          https://github.com/TokTok/c-toxcore
+# Maintainer:   pekka20 at github dot com
+# Depends on:   autoconf libconfig libsodium libvpx opus
+
+
+name=toxcore-toktok
+version=0.2.12
+release=1
+source=(https://github.com/TokTok/c-toxcore/archive/v$version.tar.gz)
+
+
+build() {
+	cd $SRC/c-toxcore-$version
+
+	cmake -DCMAKE_INSTALL_PREFIX=/usr \
+	      -DCMAKE_INSTALL_LIBDIR=/usr/lib \
+	      -DDHT_BOOTSTRAP=on \
+	      -DBOOTSTRAP_DAEMON=on \
+	      -DBUILD_TOXAV=on \
+	      -DBUILD_AV_TEST=on
+
+	make
+	make DESTDIR=$PKG install
+}

@@ -1,0 +1,52 @@
+# Description:  Lightweight tox client
+# URL:          https://utox.io
+# Maintainer:   pekka20 at github dot com
+# Depends on:   check fontconfig freetype hicolor-icon-theme libqrcodegen libsodium libvpx openal toxcore-toktok v4l-utils xorg-libsm xorg-libx11 xorg-libxext xorg-libxrender
+# Optional:     dbus gtk3 filter_audio
+
+
+# Third-party libraries needed by uTox:
+#
+# Description:  stb - A single-file public domain libraries for C/C++
+# URL:          https://github.com/nothings/stb
+#
+# Description:  minini - A small and portable INI file library with read/write support.
+# URL:          https://github.com/compuphase/minIni
+#
+# Description:  qrcodegen - A high-quality QR Code generator library in Java, TypeScript/JavaScript, Python, C++, C, Rust.
+# URL:          https://github.com/nayuki/QR-Code-generator
+
+
+name=uTox
+version=0.17.2
+release=1
+STBcommit=f54acd4e13430c5122cab4ca657705c84aa61b08
+MININIcommit=b40dff4924461272f669814da7d0c9fdc8be6d94
+QRcommit=9ed47110a564f00d7cfd1baf4bbd4215544981c4
+source=(https://github.com/uTox/uTox/archive/v"$version".tar.gz
+        https://github.com/nothings/stb/archive/"$STBcommit".zip
+        https://github.com/compuphase/minIni/archive/$MININIcommit.zip
+        https://github.com/nayuki/QR-Code-generator/archive/$QRcommit.zip)
+
+
+build() {
+	# Move third-party source to uTox source folder:
+	mv $SRC/stb-"$STBcommit"/*                $SRC/$name-$version/third-party/stb
+	mv $SRC/minIni-"$MININIcommit"/*          $SRC/$name-$version/third-party/minini
+	mv $SRC/QR-Code-generator-"$QRcommit"/*   $SRC/$name-$version/third-party/qrcodegen
+
+	# Move to uTox scource folder:
+	cd $SRC/$name-$version
+
+	mkdir -p build
+	cd build
+
+	cmake   -DCMAKE_INSTALL_PREFIX=/usr \
+	        -DCMAKE_BUILD_TYPE=Release \
+	        -DENABLE_ASAN=OFF \
+	        -DENABLE_DBUS=OFF \
+	        -DENABLE_FILTERAUDIO=OFF ..
+
+	make
+	make DESTDIR=$PKG install
+}

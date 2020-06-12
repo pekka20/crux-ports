@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Netsurf
+Comment=Browser
+Exec=netsurf-gtk2
+Icon=/usr/share/netsurf/netsurf.xpm
+Terminal=false
+Type=Application
+Categories=Application;Network;WebBrowser
