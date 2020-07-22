@@ -4,6 +4,7 @@ Ports for CRUX 3.5
 Name | Version | Description
 -|-|-
 [beep](https://github.com/spkr-beep/beep) | 1.3 | Beep is a command line tool for linux that beeps the PC speaker.
+[bollux](https://git.sr.ht/~acdw/bollux) | 0.3.0 | A bash Gemini client.
 [bombadillo](http://bombadillo.colorfield.space) | 2.3.1 | Terminal browser for Gopher, Gemini, Finger and local files.
 [netsurf](http://www.netsurf-browser.org) | 3.10 | Lightweight and fast web browser.
 [notification-daemon](https://wiki.gnome.org/Projects/NotificationDaemon) | 3.20.0 | Server implementation of the freedesktop.org desktop notification specification.

@@ -1,0 +1,17 @@
+# Description:  A gemini browser written in bash.
+# URL:          https://git.sr.ht/~acdw/bollux
+# Maintainer:   pekka20 at github dot com
+# Depends on:   bash dd glibc less openssl
+ 
+
+name=bollux
+version=0.4.3
+release=1
+source=(https://git.sr.ht/~acdw/bollux/archive/$version.tar.gz)
+
+
+build() {
+	cd $SRC/$name-$version
+
+	make DESTDIR=$PKG install
+}
